@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:id="@+id/basicLayout"
+    android:gravity="center"
+    android:background="@android:color/transparent">
+
+
+
+    <FrameLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:background="@drawable/plate2"
+        android:gravity="center"
+        android:id="@+id/middlePart">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text=""
+            android:textSize="64sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    </FrameLayout>
+
+
+
+
+</FrameLayout>
