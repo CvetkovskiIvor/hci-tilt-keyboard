@@ -26,7 +26,7 @@ public class RollingMarbleView extends androidx.appcompat.widget.AppCompatImageV
 
     // New variables for alphabet drawing
     private Paint textPaint;
-    private int radiusMargin = 90; // Adjust as needed for your design
+    private int radiusMargin = 115; // Adjust as needed for your design
     private int textRadius; // Radius where the text will be drawn
 
     private int textSize = 60;
@@ -71,8 +71,8 @@ public class RollingMarbleView extends androidx.appcompat.widget.AppCompatImageV
         canvas.drawBitmap(marbleBitmap, null, mRect, mPaint);
 
         // Define the alphabet as an array of strings
-        String[] alphabet = {"u", "v", "w", "x", "y", "z", "a", "SP", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-                "n", "o", "p", "q", "r", "s", "t"};
+        String[] alphabet = {"a", "b", "c", "d", "e", "f", "g", "SP", "h", "i", "j", "k", "l", "m",
+                "n", "o", "p", "q", "r", "s", "t", "DEL", "u", "v", "w", "x", "y", "z"};
         float angleStep = 360f / alphabet.length;
 
         for (int i = 0; i < alphabet.length; i++) {

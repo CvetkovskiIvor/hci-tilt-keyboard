@@ -32,6 +32,7 @@ public class KeyboardLayout extends FrameLayout
     private float SENSOR_THRESHOLD_Y = 1.0f;
     private boolean ALLOW_CONSECUTIVE_CONFIRMATION = false;
     private int DWELL_TIME_MS = 1000;
+    private boolean sectionMode = false;
     boolean keyConfirmed = false;
     boolean dwellTimerActive = false;
     private long dwellStart = 0;
@@ -82,15 +83,18 @@ public class KeyboardLayout extends FrameLayout
     }
 
     private String getLetterForAngle(int angle) {
-        String alphabet = "abcdefghijklmnopqrstuvwxyz";
-        int segmentSize = 360 / alphabet.length();
+        // SW - switch mode;
+        String[] alphabet = {"SW", "a", "b", "c", "d", "e", "f", "g","SP", "h", "i", "j", "k", "l", "m",
+                "n", "o", "p", "q", "r", "s", "t", "DEL", "u", "v", "w", "x", "y", "z"};
+
+        float segmentSize = 360f / alphabet.length;
 
         // Reverse the direction by subtracting the angle from 360
-        int adjustedAngle = 360 - angle;
+        int adjustedAngle = 360 - angle + 90;
 
-        int index = adjustedAngle / segmentSize;
-        index = index % alphabet.length(); // Ensure index stays within bounds
-        return String.valueOf(alphabet.charAt(index));
+        int index = (int) Math.floor(adjustedAngle / segmentSize);
+        index = index % alphabet.length; // Ensure index stays within bounds
+        return String.valueOf(alphabet[index]);
     }
 
 
@@ -143,7 +147,7 @@ public class KeyboardLayout extends FrameLayout
                 degint = 360 - (int) Math.round(angle);
             }
 
-            if (!((degint >= 355 && degint <= 360) || (degint >= 0 && degint <= 10))) {
+            /*if (!((degint >= 355 && degint <= 360) || (degint >= 0 && degint <= 10) || (degint >= 170 && degint <= 190))) {
                 target_letter = getLetterForAngle(degint);
             } else {
                 // Special cases for space and delete
@@ -152,7 +156,9 @@ public class KeyboardLayout extends FrameLayout
                 } else if (degint >= 170 && degint <= 190) {
                     target_letter = "DEL";
                 }
-            }
+            }*/
+
+            target_letter = getLetterForAngle(degint);
 
             myTV.setText(target_letter);
 
@@ -184,6 +190,8 @@ public class KeyboardLayout extends FrameLayout
                                 commitText(" ");
                             } else if (target_letter.equals("DEL")) {
                                 commitDeletion();
+                            } else if(target_letter.equals(("SW"))) {
+                                sectionMode = !sectionMode;
                             } else {
                                 commitText(target_letter);
                             }
